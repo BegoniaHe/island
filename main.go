@@ -7,7 +7,6 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
-	"os"
 	"path/filepath"
 	"regexp"
 	"strconv"
@@ -760,7 +759,7 @@ func processRoll(cmd string) string {
 	sides := defaultDiceSides
 	diceMutex.RUnlock()
 
-	num, err := strconv.Atoi(cmd)
+	_, err := strconv.Atoi(cmd)
 	if err != nil {
 		return "无效的骰子指令格式"
 	}
@@ -798,7 +797,7 @@ func processCoC7() string {
 		case "STR", "CON":
 			value = rand.Intn(6)*5 + 30
 		case "SIZ":
-			value = rand.Intn(6)+rand.Intn(6)+6
+			value = rand.Intn(6) + rand.Intn(6) + 6
 		case "DEX":
 			value = rand.Intn(6)*5 + 30
 		case "APP":
